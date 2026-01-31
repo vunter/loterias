@@ -1,0 +1,9 @@
+target/
+*.log
+*.iml
+.idea/
+.git/
+.gitignore
+*.md
+!README.md
+src/main/resources/excels/
