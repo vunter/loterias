@@ -1,0 +1,39 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Build output
+target/
+.next/
+out/
+build/
+
+# Environment & secrets
+loterias-env.conf
+.env.local
+.env*.local
+
+# Logs
+*.log
+ddagent-install.log
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Temp/test files
+result.json
+*.html
+!frontend/src/**/*.html
+
+# Archives
+*.tar.gz
+*.zip
