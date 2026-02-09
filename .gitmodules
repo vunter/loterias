@@ -1,3 +1,6 @@
 [submodule "backend"]
 	path = backend
 	url = git@github.com:vunter/loterias-backend.git
+[submodule "frontend"]
+	path = frontend
+	url = git@github.com:vunter/loterias-frontend.git
