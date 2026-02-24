@@ -4,6 +4,7 @@
 [submodule "frontend"]
 	path = frontend
 	url = git@github.com:vunter/loterias-frontend.git
-[submodule "aposta-rapido"]
-	path = aposta-rapido
+[submodule "aposta-facil"]
+	path = aposta-facil
 	url = git@github.com:vunter/loterias-aposta-rapido.git
+	branch = main
