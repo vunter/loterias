@@ -2,7 +2,7 @@
 
 ## Base URL
 
-- **Desenvolvimento**: `http://localhost:8080/api`
+- **Desenvolvimento**: `http://localhost:8081/api`
 - **Produção**: `http://localhost:3000/api` (via Next.js proxy)
 
 ## Tipos de Loteria
@@ -32,45 +32,45 @@ Retorna estatísticas completas de uma loteria.
 **Response:**
 ```json
 {
-  "tipo": "MEGA_SENA",
-  "nomeLoteria": "Mega-Sena",
-  "resumo": {
-    "totalConcursos": 2800,
-    "primeiroSorteio": "1996-03-11",
-    "ultimoSorteio": "2024-01-20",
-    "diasSemSorteio": 2,
-    "maiorPremio": 500000000.00,
-    "concursoMaiorPremio": 2150
-  },
-  "ultimoConcurso": {
-    "numero": 2800,
-    "data": "2024-01-20",
-    "dezenas": [5, 12, 23, 34, 45, 56],
-    "acumulou": false,
-    "valorAcumulado": 0,
-    "ganhadoresFaixaPrincipal": 2,
-    "premioFaixaPrincipal": 50000000.00,
-    "ganhadores": [
-      {"uf": "SP", "cidade": "São Paulo", "quantidade": 1, "canal": "Lotérica"}
-    ]
-  },
-  "numerosQuentes": [5, 10, 23, 33, 42, 53],
-  "numerosFrios": [1, 7, 15, 28, 44, 60],
-  "numerosAtrasados": [3, 9, 17, 31, 48, 59],
-  "padroes": {
-    "mediaPares": 3.2,
-    "mediaImpares": 2.8,
-    "mediaBaixos": 3.1,
-    "mediaAltos": 2.9
-  },
-  "proximoConcurso": {
-    "numero": 2801,
-    "dataEstimada": "2024-01-23",
-    "premioEstimado": 3500000.00,
-    "acumulado": false
-  },
-  "timeCoracaoInfo": null,
-  "ultimoConcursoComGanhador": {...}
+ "tipo": "MEGA_SENA",
+ "nomeLoteria": "Mega-Sena",
+ "resumo": {
+ "totalConcursos": 2800,
+ "primeiroSorteio": "1996-03-11",
+ "ultimoSorteio": "2024-01-20",
+ "diasSemSorteio": 2,
+ "maiorPremio": 500000000.00,
+ "concursoMaiorPremio": 2150
+ },
+ "ultimoConcurso": {
+ "numero": 2800,
+ "data": "2024-01-20",
+ "dezenas": [5, 12, 23, 34, 45, 56],
+ "acumulou": false,
+ "valorAcumulado": 0,
+ "ganhadoresFaixaPrincipal": 2,
+ "premioFaixaPrincipal": 50000000.00,
+ "ganhadores": [
+ {"uf": "SP", "cidade": "São Paulo", "quantidade": 1, "canal": "Lotérica"}
+ ]
+ },
+ "numerosQuentes": [5, 10, 23, 33, 42, 53],
+ "numerosFrios": [1, 7, 15, 28, 44, 60],
+ "numerosAtrasados": [3, 9, 17, 31, 48, 59],
+ "padroes": {
+ "mediaPares": 3.2,
+ "mediaImpares": 2.8,
+ "mediaBaixos": 3.1,
+ "mediaAltos": 2.9
+ },
+ "proximoConcurso": {
+ "numero": 2801,
+ "dataEstimada": "2024-01-23",
+ "premioEstimado": 3500000.00,
+ "acumulado": false
+ },
+ "timeCoracaoInfo": null,
+ "ultimoConcursoComGanhador": {...}
 }
 ```
 
@@ -81,24 +81,24 @@ Retorna ranking completo de todos os números com análises.
 **Response:**
 ```json
 [
-  {
-    "numero": 10,
-    "loteria": "MEGA_SENA",
-    "estatisticas": {
-      "frequencia": 312,
-      "percentualAparicoes": 11.14,
-      "atrasoAtual": 5,
-      "maiorAtraso": 25,
-      "mediaAtraso": 8.5
-    },
-    "ultimasCincoAparicoes": [2795, 2790, 2785, 2780, 2775],
-    "numerosCompanheiros": [23, 33, 42, 53, 5],
-    "tendencia": {
-      "status": "QUENTE",
-      "recomendacao": "Número em alta, considerar incluir",
-      "scoreTendencia": 85
-    }
-  }
+ {
+ "numero": 10,
+ "loteria": "MEGA_SENA",
+ "estatisticas": {
+ "frequencia": 312,
+ "percentualAparicoes": 11.14,
+ "atrasoAtual": 5,
+ "maiorAtraso": 25,
+ "mediaAtraso": 8.5
+ },
+ "ultimasCincoAparicoes": [2795, 2790, 2785, 2780, 2775],
+ "numerosCompanheiros": [23, 33, 42, 53, 5],
+ "tendencia": {
+ "status": "QUENTE",
+ "recomendacao": "Número em alta, considerar incluir",
+ "scoreTendencia": 85
+ }
+ }
 ]
 ```
 
@@ -112,26 +112,26 @@ Confere uma aposta no histórico de concursos.
 **Response:**
 ```json
 {
-  "tipoLoteria": "MEGA_SENA",
-  "numerosApostados": [5, 12, 23, 34, 45, 56],
-  "resumo": {
-    "totalConcursosAnalisados": 2800,
-    "vezesPremiado": 15,
-    "percentualPremiado": 0.54,
-    "maiorAcertos": 5,
-    "concursoMaiorAcertos": 2100
-  },
-  "concursosPremiados": [
-    {
-      "numeroConcurso": 2100,
-      "data": "2018-05-10",
-      "dezenasSorteadas": [5, 12, 23, 34, 45, 60],
-      "acertos": [5, 12, 23, 34, 45],
-      "quantidadeAcertos": 5,
-      "faixa": "Quina",
-      "valorPremio": 50000.00
-    }
-  ]
+ "tipoLoteria": "MEGA_SENA",
+ "numerosApostados": [5, 12, 23, 34, 45, 56],
+ "resumo": {
+ "totalConcursosAnalisados": 2800,
+ "vezesPremiado": 15,
+ "percentualPremiado": 0.54,
+ "maiorAcertos": 5,
+ "concursoMaiorAcertos": 2100
+ },
+ "concursosPremiados": [
+ {
+ "numeroConcurso": 2100,
+ "data": "2018-05-10",
+ "dezenasSorteadas": [5, 12, 23, 34, 45, 60],
+ "acertos": [5, 12, 23, 34, 45],
+ "quantidadeAcertos": 5,
+ "faixa": "Quina",
+ "valorPremio": 50000.00
+ }
+ ]
 }
 ```
 
@@ -150,12 +150,12 @@ Lista estratégias disponíveis para geração de jogos.
 **Response:**
 ```json
 [
-  {"codigo": "ALEATORIO", "nome": "Aleatório", "descricao": "Números gerados aleatoriamente"},
-  {"codigo": "QUENTES", "nome": "Números Quentes", "descricao": "Prioriza números mais sorteados"},
-  {"codigo": "FRIOS", "nome": "Números Frios", "descricao": "Prioriza números menos sorteados"},
-  {"codigo": "ATRASADOS", "nome": "Números Atrasados", "descricao": "Prioriza números há mais tempo sem sair"},
-  {"codigo": "BALANCEADO", "nome": "Balanceado", "descricao": "Mix equilibrado de quentes e frios"},
-  {"codigo": "ESTATISTICO", "nome": "Estatístico", "descricao": "Baseado em padrões históricos"}
+ {"codigo": "ALEATORIO", "nome": "Aleatório", "descricao": "Números gerados aleatoriamente"},
+ {"codigo": "QUENTES", "nome": "Números Quentes", "descricao": "Prioriza números mais sorteados"},
+ {"codigo": "FRIOS", "nome": "Números Frios", "descricao": "Prioriza números menos sorteados"},
+ {"codigo": "ATRASADOS", "nome": "Números Atrasados", "descricao": "Prioriza números há mais tempo sem sair"},
+ {"codigo": "BALANCEADO", "nome": "Balanceado", "descricao": "Mix equilibrado de quentes e frios"},
+ {"codigo": "ESTATISTICO", "nome": "Estatístico", "descricao": "Baseado em padrões históricos"}
 ]
 ```
 
@@ -171,18 +171,18 @@ Gera jogos usando estratégia predefinida.
 **Response:**
 ```json
 {
-  "tipoLoteria": "MEGA_SENA",
-  "jogos": [[5, 12, 23, 34, 45, 56]],
-  "estrategia": "QUENTES",
-  "geradoEm": "2024-01-20T15:30:00",
-  "timeSugerido": null,
-  "mesSugerido": null,
-  "debug": {
-    "etapas": ["Carregando estatísticas", "Aplicando pesos"],
-    "numerosQuentes": [5, 10, 23],
-    "numerosFrios": [1, 7, 15],
-    "pesosFinais": {"5": 1.5, "10": 1.4}
-  }
+ "tipoLoteria": "MEGA_SENA",
+ "jogos": [[5, 12, 23, 34, 45, 56]],
+ "estrategia": "QUENTES",
+ "geradoEm": "2024-01-20T15:30:00",
+ "timeSugerido": null,
+ "mesSugerido": null,
+ "debug": {
+ "etapas": ["Carregando estatísticas", "Aplicando pesos"],
+ "numerosQuentes": [5, 10, 23],
+ "numerosFrios": [1, 7, 15],
+ "pesosFinais": {"5": 1.5, "10": 1.4}
+ }
 }
 ```
 
@@ -215,18 +215,18 @@ Análise da ordem em que os números são sorteados.
 **Response:**
 ```json
 {
-  "tipoLoteria": "MEGA_SENA",
-  "nomeLoteria": "Mega-Sena",
-  "totalConcursosAnalisados": 500,
-  "primeiraBola": [
-    {"numero": 10, "frequencia": 45, "percentual": 9.0}
-  ],
-  "ultimaBola": [
-    {"numero": 53, "frequencia": 42, "percentual": 8.4}
-  ],
-  "mediaOrdem": [
-    {"numero": 5, "percentual": 2.3}
-  ]
+ "tipoLoteria": "MEGA_SENA",
+ "nomeLoteria": "Mega-Sena",
+ "totalConcursosAnalisados": 500,
+ "primeiraBola": [
+ {"numero": 10, "frequencia": 45, "percentual": 9.0}
+ ],
+ "ultimaBola": [
+ {"numero": 53, "frequencia": 42, "percentual": 8.4}
+ ],
+ "mediaOrdem": [
+ {"numero": 5, "percentual": 2.3}
+ ]
 }
 ```
 
@@ -237,16 +237,16 @@ Análise financeira (arrecadação, prêmios, ROI).
 **Response:**
 ```json
 {
-  "tipoLoteria": "MEGA_SENA",
-  "resumo": {
-    "totalArrecadado": 50000000000.00,
-    "totalPremiosPagos": 25000000000.00,
-    "percentualRetornoPremios": 50.0,
-    "saldoReservaAtual": 500000000.00
-  },
-  "evolucaoMensal": [
-    {"ano": 2024, "mes": 1, "mesAno": "01/2024", "totalArrecadado": 500000000.00}
-  ]
+ "tipoLoteria": "MEGA_SENA",
+ "resumo": {
+ "totalArrecadado": 50000000000.00,
+ "totalPremiosPagos": 25000000000.00,
+ "percentualRetornoPremios": 50.0,
+ "saldoReservaAtual": 500000000.00
+ },
+ "evolucaoMensal": [
+ {"ano": 2024, "mes": 1, "mesAno": "01/2024", "totalArrecadado": 500000000.00}
+ ]
 }
 ```
 
@@ -257,20 +257,20 @@ Análise de tendências (números quentes, frios, emergentes).
 **Response:**
 ```json
 {
-  "tipo": "MEGA_SENA",
-  "totalConcursosAnalisados": 100,
-  "tendenciasQuentes": [
-    {"numero": 10, "frequenciaTotal": 15, "frequenciaRecente": 5, "taxaCrescimento": 25.0}
-  ],
-  "tendenciasFrias": [...],
-  "tendenciasEmergentes": [...],
-  "mediasHistoricas": {
-    "somaMedia": 180.5,
-    "paresMedia": 3.2
-  },
-  "padroesVencedores": [
-    {"padrao": "3P3I", "descricao": "3 pares e 3 ímpares", "percentual": 35.2}
-  ]
+ "tipo": "MEGA_SENA",
+ "totalConcursosAnalisados": 100,
+ "tendenciasQuentes": [
+ {"numero": 10, "frequenciaTotal": 15, "frequenciaRecente": 5, "taxaCrescimento": 25.0}
+ ],
+ "tendenciasFrias": [...],
+ "tendenciasEmergentes": [...],
+ "mediasHistoricas": {
+ "somaMedia": 180.5,
+ "paresMedia": 3.2
+ },
+ "padroesVencedores": [
+ {"padrao": "3P3I", "descricao": "3 pares e 3 ímpares", "percentual": 35.2}
+ ]
 }
 ```
 
@@ -293,10 +293,10 @@ Status do rate limit de sincronização.
 **Response:**
 ```json
 {
-  "allowed": true,
-  "remainingSeconds": 0,
-  "cooldownSeconds": 120,
-  "lastSync": "2024-01-20T15:00:00Z"
+ "allowed": true,
+ "remainingSeconds": 0,
+ "cooldownSeconds": 120,
+ "lastSync": "2024-01-20T15:00:00Z"
 }
 ```
 
@@ -309,25 +309,25 @@ Sincroniza último concurso de uma loteria.
 **Response (sucesso):**
 ```json
 {
-  "tipo": "Mega-Sena",
-  "sincronizados": 1,
-  "sucesso": true,
-  "mensagem": "1 concursos sincronizados",
-  "rateLimited": false,
-  "cooldownSeconds": 120
+ "tipo": "Mega-Sena",
+ "sincronizados": 1,
+ "sucesso": true,
+ "mensagem": "1 concursos sincronizados",
+ "rateLimited": false,
+ "cooldownSeconds": 120
 }
 ```
 
 **Response (rate limited):**
 ```json
 {
-  "tipo": "mega_sena",
-  "sincronizados": 0,
-  "sucesso": false,
-  "mensagem": "Rate limit atingido. Aguarde 85 segundos.",
-  "rateLimited": true,
-  "remainingSeconds": 85,
-  "cooldownSeconds": 120
+ "tipo": "mega_sena",
+ "sincronizados": 0,
+ "sucesso": false,
+ "mensagem": "Rate limit atingido. Aguarde 85 segundos.",
+ "rateLimited": true,
+ "remainingSeconds": 85,
+ "cooldownSeconds": 120
 }
 ```
 
@@ -367,11 +367,11 @@ Todos os endpoints retornam erros no formato:
 
 ```json
 {
-  "timestamp": "2024-01-20T15:30:00",
-  "status": 400,
-  "error": "Bad Request",
-  "message": "Tipo de loteria 'invalid' inválido",
-  "path": "/api/dashboard/invalid"
+ "timestamp": "2024-01-20T15:30:00",
+ "status": 400,
+ "error": "Bad Request",
+ "message": "Tipo de loteria 'invalid' inválido",
+ "path": "/api/dashboard/invalid"
 }
 ```
 

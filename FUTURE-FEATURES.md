@@ -58,34 +58,34 @@ Auth is planned but not urgent → features are designed to work single-user fir
 
 ```
 Phase 1 (all independent, can be parallelized)
-  ├── #1 Jackpot
-  ├── #2 Regional Analysis
-  ├── #3 Plugin Templates
-  ├── #4 Probability Calculator
-  └── #5 Social Sharing
+ ├── #1 Jackpot
+ ├── #2 Regional Analysis
+ ├── #3 Plugin Templates
+ ├── #4 Probability Calculator
+ └── #5 Social Sharing
 
 Phase 2
-  #6 Saved Bets ─── prerequisite for ──→ #7 Win Notifications
-                                     └──→ #8 PDF Export (enhanced with bet history)
+ #6 Saved Bets ─── prerequisite for ──→ #7 Win Notifications
+ └──→ #8 PDF Export (enhanced with bet history)
 
 Phase 3
-  #9 PWA (standalone)
-  #10 Plugin Offline (standalone)
+ #9 PWA (standalone)
+ #10 Plugin Offline (standalone)
 
 Phase 4-6 (standalone, order flexible)
 ```
 
 ## Already Completed
 
-- ✅ Full codebase review (52 issues → 41 fixes)
-- ✅ Super Sete column-order preservation
-- ✅ All 9 lottery rules verification and fixes
-- ✅ Chrome extension URL/navigation/filling fixes
-- ✅ Plugin: Fill progress bar & confirmation dialog
-- ✅ Plugin: Options/Settings page
-- ✅ Frontend: SEO & OpenGraph meta tags, JSON-LD, robots.txt, sitemap.xml
-- ✅ **Phase 1: Jackpot Tracking** — Backend endpoint + Dashboard alert banner
-- ✅ **Phase 1: Regional Winner Analysis** — Backend aggregation + bar chart component
-- ✅ **Phase 1: Plugin Templates & Favorites** — Save/load/delete config templates
-- ✅ **Phase 1: Win Probability Calculator** — Combinatorics-based odds per tier
-- ✅ **Phase 1: Social Sharing** — WhatsApp/Telegram/X/copy/native share
+- Full codebase review (52 issues → 41 fixes)
+- Super Sete column-order preservation
+- All 9 lottery rules verification and fixes
+- Chrome extension URL/navigation/filling fixes
+- Plugin: Fill progress bar & confirmation dialog
+- Plugin: Options/Settings page
+- Frontend: SEO & OpenGraph meta tags, JSON-LD, robots.txt, sitemap.xml
+- **Phase 1: Jackpot Tracking** — Backend endpoint + Dashboard alert banner
+- **Phase 1: Regional Winner Analysis** — Backend aggregation + bar chart component
+- **Phase 1: Plugin Templates & Favorites** — Save/load/delete config templates
+- **Phase 1: Win Probability Calculator** — Combinatorics-based odds per tier
+- **Phase 1: Social Sharing** — WhatsApp/Telegram/X/copy/native share

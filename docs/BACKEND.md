@@ -22,36 +22,36 @@ API REST para análise de loterias brasileiras da Caixa Econômica Federal.
 ```
 backend/
 ├── src/main/java/br/com/loterias/
-│   ├── config/                 # Configurações
-│   │   ├── CorsConfig.java     # CORS
-│   │   ├── WebClientConfig.java # WebClient
-│   │   └── OpenApiConfig.java  # Swagger
-│   ├── controller/             # REST Controllers
-│   │   ├── ConcursoController.java
-│   │   ├── EstatisticasController.java
-│   │   ├── ApostaController.java
-│   │   ├── ImportController.java
-│   │   └── ExportController.java
-│   ├── domain/                 # Entidades e DTOs
-│   │   ├── Concurso.java       # Entidade principal
-│   │   ├── TipoLoteria.java    # Enum de loterias
-│   │   └── dto/                # Data Transfer Objects
-│   ├── service/                # Lógica de negócio
-│   │   ├── ConcursoService.java
-│   │   ├── EstatisticasService.java
-│   │   ├── GeradorJogosService.java
-│   │   ├── ImportService.java
-│   │   └── CaixaApiService.java
-│   ├── scheduler/              # Jobs agendados
-│   │   └── ImportScheduler.java
-│   └── LoteriasApplication.java # Main
+│ ├── config/ # Configurações
+│ │ ├── CorsConfig.java # CORS
+│ │ ├── WebClientConfig.java # WebClient
+│ │ └── OpenApiConfig.java # Swagger
+│ ├── controller/ # REST Controllers
+│ │ ├── ConcursoController.java
+│ │ ├── EstatisticasController.java
+│ │ ├── ApostaController.java
+│ │ ├── ImportController.java
+│ │ └── ExportController.java
+│ ├── domain/ # Entidades e DTOs
+│ │ ├── Concurso.java # Entidade principal
+│ │ ├── TipoLoteria.java # Enum de loterias
+│ │ └── dto/ # Data Transfer Objects
+│ ├── service/ # Lógica de negócio
+│ │ ├── ConcursoService.java
+│ │ ├── EstatisticasService.java
+│ │ ├── GeradorJogosService.java
+│ │ ├── ImportService.java
+│ │ └── CaixaApiService.java
+│ ├── scheduler/ # Jobs agendados
+│ │ └── ImportScheduler.java
+│ └── LoteriasApplication.java # Main
 ├── src/main/resources/
-│   ├── application.yml         # Configuração principal
-│   ├── application-dev.yml     # Perfil desenvolvimento
-│   └── application-prod.yml    # Perfil produção
-├── pom.xml                     # Maven
-├── Dockerfile                  # Container
-└── docker-compose.yml          # Compose com PostgreSQL
+│ ├── application.yml # Configuração principal
+│ ├── application-dev.yml # Perfil desenvolvimento
+│ └── application-prod.yml # Perfil produção
+├── pom.xml # Maven
+├── Dockerfile # Container
+└── docker-compose.yml # Compose com PostgreSQL
 ```
 
 ## Comandos
@@ -69,8 +69,8 @@ mvn spring-boot:run
 mvn spring-boot:run -Dspring-boot.run.profiles=prod
 
 # Acessar
-open http://localhost:8080
-open http://localhost:8080/docs  # Swagger
+open http://localhost:8081
+open http://localhost:8081/docs # Swagger
 ```
 
 ### Testes
@@ -106,7 +106,7 @@ sudo systemctl stop loterias-backend-dev
 journalctl -u loterias-backend-dev -f
 ```
 
-⚠️ **Não rode ambos simultaneamente!**
+ **Não rode ambos simultaneamente!**
 
 ## Docker
 
@@ -122,32 +122,32 @@ docker-compose up -d
 
 ### Documentação Interativa
 
-- **Swagger UI:** http://localhost:8080/docs
-- **OpenAPI JSON:** http://localhost:8080/api-docs
+- **Swagger UI:** http://localhost:8081/docs
+- **OpenAPI JSON:** http://localhost:8081/api-docs
 
 ### Principais Endpoints
 
 #### Concursos
 ```http
-GET /api/concursos/{tipo}/ultimo          # Último concurso
-GET /api/concursos/{tipo}/{numero}        # Concurso específico
+GET /api/concursos/{tipo}/ultimo # Último concurso
+GET /api/concursos/{tipo}/{numero} # Concurso específico
 ```
 
 #### Estatísticas
 ```http
-GET /api/estatisticas/{tipo}/frequencia              # Frequência
-GET /api/estatisticas/{tipo}/mais-frequentes         # Top números
-GET /api/estatisticas/{tipo}/menos-frequentes        # Menos frequentes
-GET /api/estatisticas/{tipo}/atrasados               # Atrasados
-GET /api/estatisticas/{tipo}/correlacao              # Pares frequentes
-GET /api/estatisticas/{tipo}/pares-impares           # Distribuição
-GET /api/estatisticas/{tipo}/soma-media              # Soma média
-GET /api/estatisticas/{tipo}/acompanham/{numero}     # Acompanham número
+GET /api/estatisticas/{tipo}/frequencia # Frequência
+GET /api/estatisticas/{tipo}/mais-frequentes # Top números
+GET /api/estatisticas/{tipo}/menos-frequentes # Menos frequentes
+GET /api/estatisticas/{tipo}/atrasados # Atrasados
+GET /api/estatisticas/{tipo}/correlacao # Pares frequentes
+GET /api/estatisticas/{tipo}/pares-impares # Distribuição
+GET /api/estatisticas/{tipo}/soma-media # Soma média
+GET /api/estatisticas/{tipo}/acompanham/{numero} # Acompanham número
 ```
 
 #### Gerador de Jogos
 ```http
-GET  /api/estatisticas/{tipo}/gerar-jogos-estrategico?estrategia=X&quantidade=N
+GET /api/estatisticas/{tipo}/gerar-jogos-estrategico?estrategia=X&quantidade=N
 POST /api/estatisticas/{tipo}/gerar-jogos
 ```
 
@@ -160,23 +160,23 @@ Parâmetros do gerador:
 
 #### Apostas
 ```http
-POST /api/apostas/{tipo}/verificar        # Verificar aposta
-POST /api/apostas/{tipo}/simular          # Simular apostas
+POST /api/apostas/{tipo}/verificar # Verificar aposta
+POST /api/apostas/{tipo}/simular # Simular apostas
 ```
 
 #### Importação
 ```http
-POST /api/import/download-excel           # Baixar todos os Excels
-POST /api/import/{tipo}/local-excel       # Importar Excel local
-POST /api/import/{tipo}/excel             # Upload Excel
-GET  /api/import/status                   # Status dos arquivos
+POST /api/import/download-excel # Baixar todos os Excels
+POST /api/import/{tipo}/local-excel # Importar Excel local
+POST /api/import/{tipo}/excel # Upload Excel
+GET /api/import/status # Status dos arquivos
 ```
 
 #### Exportação
 ```http
-GET /api/export/{tipo}/concursos.csv      # Exportar CSV
-GET /api/export/{tipo}/frequencia.csv     # Frequência CSV
-GET /api/export/{tipo}/estatisticas.csv   # Estatísticas CSV
+GET /api/export/{tipo}/concursos.csv # Exportar CSV
+GET /api/export/{tipo}/frequencia.csv # Frequência CSV
+GET /api/export/{tipo}/estatisticas.csv # Estatísticas CSV
 ```
 
 ### Tipos de Loteria
@@ -224,25 +224,25 @@ Logs são enviados para Grafana Loki automaticamente em produção.
 
 ```yaml
 spring:
-  datasource:
-    url: jdbc:h2:mem:loterias
-    driver-class-name: org.h2.Driver
-  jpa:
-    hibernate:
-      ddl-auto: create-drop
+ datasource:
+ url: jdbc:h2:mem:loterias
+ driver-class-name: org.h2.Driver
+ jpa:
+ hibernate:
+ ddl-auto: create-drop
 ```
 
 ### application-prod.yml (Produção)
 
 ```yaml
 spring:
-  datasource:
-    url: jdbc:postgresql://localhost:5432/loterias
-    username: ${DB_USER}
-    password: ${DB_PASS}
-  jpa:
-    hibernate:
-      ddl-auto: validate
+ datasource:
+ url: jdbc:postgresql://localhost:5432/loterias
+ username: ${DB_USER}
+ password: ${DB_PASS}
+ jpa:
+ hibernate:
+ ddl-auto: validate
 ```
 
 ## Agendamentos

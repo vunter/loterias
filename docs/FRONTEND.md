@@ -10,7 +10,7 @@ Dashboard web para análise de loterias brasileiras da Caixa Econômica Federal.
 | React | 19.2.3 | Biblioteca de UI |
 | TypeScript | 5.x | Tipagem estática |
 | Tailwind CSS | 4.x | Framework CSS utilitário |
-| Recharts | 3.7.0 | Gráficos |
+| Nivo | 0.99.0 | Graficos (bar, line, pie) |
 | Lucide React | 0.563.0 | Ícones |
 | Pino + Loki | - | Logging centralizado |
 
@@ -19,35 +19,35 @@ Dashboard web para análise de loterias brasileiras da Caixa Econômica Federal.
 ```
 frontend/
 ├── src/
-│   ├── app/                    # Next.js App Router
-│   │   ├── api/                # API Routes (BFF)
-│   │   ├── layout.tsx          # Layout principal
-│   │   ├── page.tsx            # Página inicial
-│   │   └── globals.css         # Estilos globais
-│   ├── components/             # Componentes React
-│   │   ├── Dashboard.tsx       # Dashboard principal
-│   │   ├── LotterySelector.tsx # Seletor de loteria
-│   │   ├── GameGenerator.tsx   # Gerador de jogos
-│   │   ├── BetChecker.tsx      # Verificador de apostas
-│   │   ├── NumberRanking.tsx   # Ranking de números
-│   │   ├── NumberBall.tsx      # Componente de bola numerada
-│   │   ├── MultiGameGenerator.tsx # Gerador múltiplo
-│   │   ├── TendenciasAnalise.tsx  # Análise de tendências
-│   │   ├── FinanceiroAnalise.tsx  # Análise financeira
-│   │   ├── DuplaSenaAnalise.tsx   # Análise Dupla Sena
-│   │   ├── OrdemSorteioAnalise.tsx # Ordem de sorteio
-│   │   ├── TimeCoracaoRanking.tsx  # Ranking times (Timemania)
-│   │   ├── JogosHistorico.tsx     # Histórico de jogos
-│   │   ├── EspeciaisDashboard.tsx # Loterias especiais
-│   │   └── ThemeToggle.tsx        # Alternador tema claro/escuro
-│   ├── contexts/               # React Contexts
-│   └── lib/
-│       └── api.ts              # Cliente API e tipos
-├── public/                     # Arquivos estáticos
-├── next.config.ts              # Configuração Next.js
-├── tailwind.config.ts          # Configuração Tailwind
-├── package.json                # Dependências
-└── tsconfig.json               # Configuração TypeScript
+│ ├── app/ # Next.js App Router
+│ │ ├── api/ # API Routes (BFF)
+│ │ ├── layout.tsx # Layout principal
+│ │ ├── page.tsx # Página inicial
+│ │ └── globals.css # Estilos globais
+│ ├── components/ # Componentes React
+│ │ ├── Dashboard.tsx # Dashboard principal
+│ │ ├── LotterySelector.tsx # Seletor de loteria
+│ │ ├── GameGenerator.tsx # Gerador de jogos
+│ │ ├── BetChecker.tsx # Verificador de apostas
+│ │ ├── NumberRanking.tsx # Ranking de números
+│ │ ├── NumberBall.tsx # Componente de bola numerada
+│ │ ├── MultiGameGenerator.tsx # Gerador múltiplo
+│ │ ├── TendenciasAnalise.tsx # Análise de tendências
+│ │ ├── FinanceiroAnalise.tsx # Análise financeira
+│ │ ├── DuplaSenaAnalise.tsx # Análise Dupla Sena
+│ │ ├── OrdemSorteioAnalise.tsx # Ordem de sorteio
+│ │ ├── TimeCoracaoRanking.tsx # Ranking times (Timemania)
+│ │ ├── JogosHistorico.tsx # Histórico de jogos
+│ │ ├── EspeciaisDashboard.tsx # Loterias especiais
+│ │ └── ThemeToggle.tsx # Alternador tema claro/escuro
+│ ├── contexts/ # React Contexts
+│ └── lib/
+│ └── api.ts # Cliente API e tipos
+├── public/ # Arquivos estáticos
+├── next.config.ts # Configuração Next.js
+├── tailwind.config.ts # Configuração Tailwind
+├── package.json # Dependências
+└── tsconfig.json # Configuração TypeScript
 ```
 
 ## Comandos
@@ -105,7 +105,7 @@ sudo systemctl stop loterias-frontend-dev
 journalctl -u loterias-frontend-dev -f
 ```
 
-⚠️ **Não rode ambos simultaneamente!**
+ **Não rode ambos simultaneamente!**
 
 ## Variáveis de Ambiente
 
@@ -113,7 +113,7 @@ Criar arquivo `.env.local`:
 
 ```env
 # URL do backend
-NEXT_PUBLIC_API_URL=http://localhost:8080
+NEXT_PUBLIC_API_URL=http://localhost:8081
 ```
 
 ## Componentes Principais
@@ -175,8 +175,8 @@ const frequencia = await api.getFrequencia('lotofacil');
 
 // Gerar jogos
 const jogos = await api.gerarJogos('quina', { 
-  quantidade: 5, 
-  estrategia: 'FREQUENCIA_POSICIONAL' 
+ quantidade: 5, 
+ estrategia: 'FREQUENCIA_POSICIONAL' 
 });
 ```
 

@@ -1,6 +1,6 @@
 # Grafana Dashboards - Loterias Analyzer
 
-## ⚠️ Configuração Necessária
+## Configuração Necessária
 
 Antes de importar os dashboards, configure o Prometheus para coletar métricas do backend.
 
@@ -10,13 +10,13 @@ Adicione ao arquivo `/etc/prometheus/prometheus.yml`:
 
 ```yaml
 scrape_configs:
-  - job_name: 'loterias-backend'
-    metrics_path: '/actuator/prometheus'
-    scrape_interval: 10s
-    static_configs:
-      - targets: ['192.168.1.110:8080']
-        labels:
-          application: 'loterias-analyzer'
+ - job_name: 'loterias-backend'
+ metrics_path: '/actuator/prometheus'
+ scrape_interval: 10s
+ static_configs:
+ - targets: ['192.168.1.110:8080']
+ labels:
+ application: 'loterias-analyzer'
 ```
 
 Reinicie o Prometheus:
@@ -101,11 +101,11 @@ Logs da aplicação via Loki.
 ```bash
 # Importar dashboards via API
 for file in *.json; do
-  curl -X POST \
-    -H "Content-Type: application/json" \
-    -H "Authorization: Bearer YOUR_API_KEY" \
-    -d @"$file" \
-    http://192.168.1.193:3000/api/dashboards/db
+ curl -X POST \
+ -H "Content-Type: application/json" \
+ -H "Authorization: Bearer YOUR_API_KEY" \
+ -d @"$file" \
+ http://192.168.1.193:3000/api/dashboards/db
 done
 ```
 
@@ -118,10 +118,10 @@ Certifique-se que o Prometheus está configurado para scrape:
 ```yaml
 # prometheus.yml
 scrape_configs:
-  - job_name: 'loterias-backend'
-    metrics_path: '/actuator/prometheus'
-    static_configs:
-      - targets: ['localhost:8080']
+ - job_name: 'loterias-backend'
+ metrics_path: '/actuator/prometheus'
+ static_configs:
+ - targets: ['localhost:8080']
 ```
 
 ## Alertas Sugeridos
@@ -129,31 +129,31 @@ scrape_configs:
 ### Prometheus Alerts:
 ```yaml
 groups:
-  - name: loterias
-    rules:
-      - alert: LoteriaBackendDown
-        expr: up{application="loterias-analyzer"} == 0
-        for: 1m
-        labels:
-          severity: critical
-        annotations:
-          summary: "Backend está offline"
-          
-      - alert: HighErrorRate
-        expr: rate(http_server_requests_seconds_count{application="loterias-analyzer", status=~"5.."}[5m]) > 0.1
-        for: 5m
-        labels:
-          severity: warning
-        annotations:
-          summary: "Taxa de erros 5xx elevada"
-          
-      - alert: HighResponseTime
-        expr: histogram_quantile(0.95, sum(rate(http_server_requests_seconds_bucket{application="loterias-analyzer"}[5m])) by (le)) > 2
-        for: 5m
-        labels:
-          severity: warning
-        annotations:
-          summary: "Tempo de resposta p95 > 2s"
+ - name: loterias
+ rules:
+ - alert: LoteriaBackendDown
+ expr: up{application="loterias-analyzer"} == 0
+ for: 1m
+ labels:
+ severity: critical
+ annotations:
+ summary: "Backend está offline"
+ 
+ - alert: HighErrorRate
+ expr: rate(http_server_requests_seconds_count{application="loterias-analyzer", status=~"5.."}[5m]) > 0.1
+ for: 5m
+ labels:
+ severity: warning
+ annotations:
+ summary: "Taxa de erros 5xx elevada"
+ 
+ - alert: HighResponseTime
+ expr: histogram_quantile(0.95, sum(rate(http_server_requests_seconds_bucket{application="loterias-analyzer"}[5m])) by (le)) > 2
+ for: 5m
+ labels:
+ severity: warning
+ annotations:
+ summary: "Tempo de resposta p95 > 2s"
 ```
 
 ## Estrutura dos Arquivos
@@ -161,7 +161,7 @@ groups:
 ```
 grafana/
 ├── README.md
-├── loterias-overview-dashboard.json   # Visão geral
-├── loterias-backend-dashboard.json    # Métricas do backend
-└── loterias-logs-dashboard.json       # Logs da aplicação
+├── loterias-overview-dashboard.json # Visão geral
+├── loterias-backend-dashboard.json # Métricas do backend
+└── loterias-logs-dashboard.json # Logs da aplicação
 ```

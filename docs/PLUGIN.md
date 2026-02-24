@@ -4,32 +4,32 @@ Extensão para Chrome que preenche automaticamente apostas no portal Loterias On
 
 ## Funcionalidades
 
-- ✅ Preencher jogos manualmente digitados
-- ✅ Gerar jogos via API do Loterias Analyzer
-- ✅ Múltiplas estratégias de geração
-- ✅ Seleção de quantidade de números por jogo
-- ✅ Suporte a trevos fixos (+Milionária)
-- ✅ Suporte a time fixo (Timemania)
-- ✅ Suporte a mês fixo (Dia de Sorte)
-- ✅ **Jogos do Dia** - Apostar em múltiplas loterias automaticamente
-- ✅ Persistência de configurações
+- Preencher jogos manualmente digitados
+- Gerar jogos via API do Loterias Analyzer
+- Múltiplas estratégias de geração
+- Seleção de quantidade de números por jogo
+- Suporte a trevos fixos (+Milionária)
+- Suporte a time fixo (Timemania)
+- Suporte a mês fixo (Dia de Sorte)
+- **Jogos do Dia** - Apostar em múltiplas loterias automaticamente
+- Persistência de configurações
 
 ## Estrutura do Projeto
 
 ```
 aposta-rapido/
 ├── src/
-│   ├── popup.html          # Interface do popup
-│   ├── popup.css           # Estilos do popup
-│   ├── popup.js            # Lógica do popup
-│   ├── background.js       # Service Worker
-│   ├── content.js          # Script injetado na página
-│   └── content.css         # Estilos injetados
+│ ├── popup.html # Interface do popup
+│ ├── popup.css # Estilos do popup
+│ ├── popup.js # Lógica do popup
+│ ├── background.js # Service Worker
+│ ├── content.js # Script injetado na página
+│ └── content.css # Estilos injetados
 ├── icons/
-│   ├── icon16.png
-│   ├── icon48.png
-│   └── icon128.png
-├── manifest.json           # Configuração da extensão
+│ ├── icon16.png
+│ ├── icon48.png
+│ └── icon128.png
+├── manifest.json # Configuração da extensão
 └── README.md
 ```
 
@@ -61,7 +61,7 @@ Após alterações no código:
 
 ### Gerar via API
 
-1. Configure a URL da API (padrão: `http://localhost:8080`)
+1. Configure a URL da API (padrão: `http://localhost:8081`)
 2. Selecione quantidade de jogos e estratégia
 3. Ajuste quantidade de números (se aplicável)
 4. Clique em "Gerar Jogos"
@@ -72,15 +72,15 @@ Após alterações no código:
 
 Aposta em múltiplas loterias de uma vez:
 
-1. Na seção "Jogos do Dia", clique em **📅 Hoje** para selecionar automaticamente as loterias com sorteio no dia atual
+1. Na seção "Jogos do Dia", clique em ** Hoje** para selecionar automaticamente as loterias com sorteio no dia atual
 2. Ou marque manualmente as loterias desejadas
 3. Defina a quantidade de jogos por loteria
-4. Clique em **🚀 Gerar e Apostar**
+4. Clique em ** Gerar e Apostar**
 5. O plugin irá:
-   - Gerar jogos para cada loteria via API
-   - Abrir cada página sequencialmente
-   - Preencher os números automaticamente
-   - Adicionar ao carrinho
+ - Gerar jogos para cada loteria via API
+ - Abrir cada página sequencialmente
+ - Preencher os números automaticamente
+ - Adicionar ao carrinho
 
 ## Loterias Suportadas
 
@@ -169,18 +169,18 @@ Script injetado nas páginas do portal da Caixa:
 
 ```json
 {
-  "permissions": [
-    "activeTab",    // Interagir com aba ativa
-    "tabs",         // Criar/gerenciar abas
-    "storage",      // Persistir dados
-    "scripting",    // Injetar scripts
-    "contextMenus"  // Menu de contexto
-  ],
-  "host_permissions": [
-    "https://www.loteriasonline.caixa.gov.br/*",
-    "https://loteriasonline.caixa.gov.br/*",
-    "https://*.caixa.gov.br/*"
-  ]
+ "permissions": [
+ "activeTab", // Interagir com aba ativa
+ "tabs", // Criar/gerenciar abas
+ "storage", // Persistir dados
+ "scripting", // Injetar scripts
+ "contextMenus" // Menu de contexto
+ ],
+ "host_permissions": [
+ "https://www.loteriasonline.caixa.gov.br/*",
+ "https://loteriasonline.caixa.gov.br/*",
+ "https://*.caixa.gov.br/*"
+ ]
 }
 ```
 
@@ -207,10 +207,10 @@ Script injetado nas páginas do portal da Caixa:
 4. Background aguarda página carregar
 5. Background injeta script via chrome.scripting.executeScript
 6. Script injetado:
-   a. Limpa seleção anterior
-   b. Seleciona cada número via Angular scope
-   c. Seleciona time/mês se aplicável
-   d. Clica em "Colocar no Carrinho"
+ a. Limpa seleção anterior
+ b. Seleciona cada número via Angular scope
+ c. Seleciona time/mês se aplicável
+ d. Clica em "Colocar no Carrinho"
 7. Background processa próxima loteria
 ```
 

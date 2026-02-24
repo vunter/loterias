@@ -100,7 +100,7 @@ sudo systemctl status loterias-backend
 journalctl -u loterias-backend -f
 
 # Teste local
-curl http://127.0.0.1:8080/api/dashboard/megasena
+curl http://127.0.0.1:8081/api/dashboard/megasena
 ```
 
 ---
@@ -134,7 +134,7 @@ RestartSec=10
 StandardOutput=journal
 StandardError=journal
 Environment=NODE_ENV=production
-Environment=BACKEND_URL=http://127.0.0.1:8080
+Environment=BACKEND_URL=http://127.0.0.1:8081
 Environment=LOKI_URL=http://192.168.1.193:3100
 Environment=PROMETHEUS_PUSHGATEWAY_URL=http://192.168.1.193:9091
 Environment=LOG_LEVEL=info
@@ -144,7 +144,7 @@ WantedBy=multi-user.target
 ```
 
 **Pontos importantes:**
-- `BACKEND_URL=http://127.0.0.1:8080` - Frontend se conecta ao backend local
+- `BACKEND_URL=http://127.0.0.1:8081` - Frontend se conecta ao backend local
 - O frontend faz proxy de `/api/*` via API Routes do Next.js
 
 ### 2.3. Instalação
@@ -214,22 +214,22 @@ No servidor 192.168.1.193, edite `/etc/prometheus/prometheus.yml`:
 
 ```yaml
 global:
-  scrape_interval: 15s
-  evaluation_interval: 15s
+ scrape_interval: 15s
+ evaluation_interval: 15s
 
 scrape_configs:
-  - job_name: 'prometheus'
-    static_configs:
-      - targets: ['localhost:9090']
+ - job_name: 'prometheus'
+ static_configs:
+ - targets: ['localhost:9090']
 
-  - job_name: 'loterias-backend'
-    metrics_path: '/actuator/prometheus'
-    scrape_interval: 10s
-    static_configs:
-      - targets: ['192.168.1.110:8080']
-        labels:
-          application: 'loterias-analyzer'
-          environment: 'production'
+ - job_name: 'loterias-backend'
+ metrics_path: '/actuator/prometheus'
+ scrape_interval: 10s
+ static_configs:
+ - targets: ['192.168.1.110:8081']
+ labels:
+ application: 'loterias-analyzer'
+ environment: 'production'
 ```
 
 ### 4.2. Reiniciar
@@ -293,9 +293,9 @@ Acesse http://192.168.1.193:3000 → Configuration → Data Sources:
 
 1. Vá em Dashboards → Import
 2. Upload dos arquivos JSON de `grafana/`:
-   - `loterias-overview-dashboard.json`
-   - `loterias-backend-dashboard.json`
-   - `loterias-logs-dashboard.json`
+ - `loterias-overview-dashboard.json`
+ - `loterias-backend-dashboard.json`
+ - `loterias-logs-dashboard.json`
 
 ---
 
@@ -344,7 +344,7 @@ sudo systemctl start loterias-backend loterias-frontend
 
 echo "=== Instalação concluída ==="
 echo "Frontend: http://localhost:3000"
-echo "Backend:  http://localhost:8080 (interno)"
+echo "Backend: http://localhost:8081 (interno)"
 ```
 
 ### Desenvolvimento (Hot Reload)
@@ -377,7 +377,7 @@ sudo systemctl start loterias-backend loterias-frontend
 journalctl -u loterias-backend-dev -u loterias-frontend-dev -f
 ```
 
-⚠️ **Não rode serviços de dev e produção simultaneamente!**
+ **Não rode serviços de dev e produção simultaneamente!**
 
 ---
 
@@ -401,7 +401,7 @@ java -jar target/loterias-analyzer-0.0.1-SNAPSHOT.jar
 
 ```bash
 # Verificar se backend está rodando
-curl http://127.0.0.1:8080/actuator/health
+curl http://127.0.0.1:8081/actuator/health
 
 # Verificar variável BACKEND_URL
 systemctl show loterias-frontend | grep Environment
@@ -414,7 +414,7 @@ journalctl -u loterias-frontend -f
 
 ```bash
 # Verificar acesso ao actuator
-curl http://192.168.1.110:8080/actuator/prometheus
+curl http://192.168.1.110:8081/actuator/prometheus
 
 # Verificar configuração
 cat /etc/prometheus/prometheus.yml | grep -A5 loterias
@@ -431,7 +431,7 @@ curl http://localhost:3100/loki/api/v1/label/application/values
 
 # Query de teste
 curl -G http://localhost:3100/loki/api/v1/query \
-  --data-urlencode 'query={application="loterias-analyzer"}'
+ --data-urlencode 'query={application="loterias-analyzer"}'
 
 # Verificar logback do backend
 cat backend/src/main/resources/logback-spring.xml
@@ -477,8 +477,8 @@ pg_dump -U postgres loterias > backup.sql
 ```bash
 # Backup de configs
 tar czf loterias-config-backup.tar.gz \
-  loterias-backend.service \
-  loterias-frontend.service \
-  nginx/loterias-backend.conf \
-  grafana/*.json
+ loterias-backend.service \
+ loterias-frontend.service \
+ nginx/loterias-backend.conf \
+ grafana/*.json
 ```

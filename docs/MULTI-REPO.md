@@ -5,10 +5,10 @@ This project uses a **multi-repository architecture** with **Git Submodules** to
 ## Repository Structure
 
 ```
-loterias/                          ← Parent repo (infrastructure + docs)
-├── backend/                       ← Submodule → loterias-backend
-├── frontend/                      ← Submodule → loterias-frontend
-├── aposta-rapido/                 ← Submodule → loterias-aposta-rapido
+loterias/ ← Parent repo (infrastructure + docs)
+├── backend/ ← Submodule → loterias-backend
+├── frontend/ ← Submodule → loterias-frontend
+├── aposta-rapido/ ← Submodule → loterias-aposta-rapido
 ├── docker-compose.yml
 ├── nginx/
 ├── grafana/
@@ -52,16 +52,16 @@ This creates a `.gitmodules` file:
 
 ```ini
 [submodule "backend"]
-    path = backend
-    url = <backend-repo-url>
+ path = backend
+ url = <backend-repo-url>
 
 [submodule "frontend"]
-    path = frontend
-    url = <frontend-repo-url>
+ path = frontend
+ url = <frontend-repo-url>
 
 [submodule "aposta-rapido"]
-    path = aposta-rapido
-    url = <plugin-repo-url>
+ path = aposta-rapido
+ url = <plugin-repo-url>
 ```
 
 ### Cloning the Full Project
@@ -125,44 +125,44 @@ git submodule summary
 ### Parent Repo (`loterias`)
 
 ```
-├── .gitmodules                    # Submodule configuration
+├── .gitmodules # Submodule configuration
 ├── .gitignore
 ├── .dockerignore
-├── .env.docker.example            # Docker environment template
-├── README.md                      # Project overview
-├── FUTURE-FEATURES.md             # Roadmap
-├── docker-compose.yml             # Full-stack Docker Compose
-├── install-services.sh            # Production installer
-├── install-dev-services.sh        # Development installer
-├── setup-nexus-repos.sh           # Nexus artifact repos
-├── loterias-backend.service       # Systemd (prod backend)
-├── loterias-frontend.service      # Systemd (prod frontend)
-├── loterias-backend-dev.service   # Systemd (dev backend)
-├── loterias-frontend-dev.service  # Systemd (dev frontend)
-├── loterias-env.conf              # Environment configuration
-├── loterias-logrotate.conf        # Log rotation
-├── nginx/                         # Reverse proxy configs
-│   ├── loterias-backend.conf
-│   ├── nginx.docker.conf
-│   └── README.md
-├── grafana/                       # Monitoring configs
-│   ├── prometheus.yml
-│   ├── datasources.yml
-│   ├── loki-config.yml
-│   ├── loterias-overview-dashboard.json
-│   ├── loterias-backend-dashboard.json
-│   ├── loterias-logs-dashboard.json
-│   └── README.md
-└── docs/                          # Project-wide documentation
-    ├── README.md
-    ├── ARCHITECTURE.md
-    ├── BACKEND.md
-    ├── FRONTEND.md
-    ├── PLUGIN.md
-    ├── API.md
-    ├── DEPLOY.md
-    ├── DEVELOPMENT.md
-    └── FEATURES.md
+├── .env.docker.example # Docker environment template
+├── README.md # Project overview
+├── FUTURE-FEATURES.md # Roadmap
+├── docker-compose.yml # Full-stack Docker Compose
+├── install-services.sh # Production installer
+├── install-dev-services.sh # Development installer
+├── setup-nexus-repos.sh # Nexus artifact repos
+├── loterias-backend.service # Systemd (prod backend)
+├── loterias-frontend.service # Systemd (prod frontend)
+├── loterias-backend-dev.service # Systemd (dev backend)
+├── loterias-frontend-dev.service # Systemd (dev frontend)
+├── loterias-env.conf # Environment configuration
+├── loterias-logrotate.conf # Log rotation
+├── nginx/ # Reverse proxy configs
+│ ├── loterias-backend.conf
+│ ├── nginx.docker.conf
+│ └── README.md
+├── grafana/ # Monitoring configs
+│ ├── prometheus.yml
+│ ├── datasources.yml
+│ ├── loki-config.yml
+│ ├── loterias-overview-dashboard.json
+│ ├── loterias-backend-dashboard.json
+│ ├── loterias-logs-dashboard.json
+│ └── README.md
+└── docs/ # Project-wide documentation
+ ├── README.md
+ ├── ARCHITECTURE.md
+ ├── BACKEND.md
+ ├── FRONTEND.md
+ ├── PLUGIN.md
+ ├── API.md
+ ├── DEPLOY.md
+ ├── DEVELOPMENT.md
+ └── FEATURES.md
 ```
 
 ### Backend Repo (`loterias-backend`)
@@ -180,25 +180,25 @@ git submodule summary
 ├── README.md
 ├── AGENTS.md
 └── src/
-    ├── main/java/br/com/loterias/
-    │   ├── LoteriasApplication.java
-    │   ├── config/          (9 classes)
-    │   ├── controller/      (13 classes)
-    │   ├── domain/
-    │   │   ├── entity/      (5 classes)
-    │   │   ├── dto/         (25 classes)
-    │   │   └── repository/  (2 interfaces)
-    │   ├── service/         (22 classes)
-    │   │   └── util/        (2 classes)
-    │   └── scheduler/       (1 class)
-    ├── main/resources/
-    │   ├── application.yml
-    │   ├── application-dev.yml
-    │   ├── application-db.properties
-    │   ├── logback-spring.xml
-    │   ├── db/migration/    (4 SQL files)
-    │   └── excels/          (reference data)
-    └── test/java/           (11 test classes)
+ ├── main/java/br/com/loterias/
+ │ ├── LoteriasApplication.java
+ │ ├── config/ (9 classes)
+ │ ├── controller/ (13 classes)
+ │ ├── domain/
+ │ │ ├── entity/ (5 classes)
+ │ │ ├── dto/ (25 classes)
+ │ │ └── repository/ (2 interfaces)
+ │ ├── service/ (22 classes)
+ │ │ └── util/ (2 classes)
+ │ └── scheduler/ (1 class)
+ ├── main/resources/
+ │ ├── application.yml
+ │ ├── application-dev.yml
+ │ ├── application-db.properties
+ │ ├── logback-spring.xml
+ │ ├── db/migration/ (4 SQL files)
+ │ └── excels/ (reference data)
+ └── test/java/ (11 test classes)
 ```
 
 ### Frontend Repo (`loterias-frontend`)
@@ -218,23 +218,23 @@ git submodule summary
 ├── README.md
 ├── AGENTS.md
 ├── public/
-│   └── *.svg
+│ └── *.svg
 └── src/
-    ├── app/
-    │   ├── layout.tsx
-    │   ├── page.tsx
-    │   ├── globals.css
-    │   ├── error.tsx
-    │   ├── loading.tsx
-    │   ├── robots.ts
-    │   ├── sitemap.ts
-    │   └── api/
-    │       ├── [...path]/route.ts
-    │       └── health/route.ts
-    ├── components/          (24 components)
-    ├── contexts/
-    │   └── ThemeContext.tsx
-    └── lib/                 (7 modules)
+ ├── app/
+ │ ├── layout.tsx
+ │ ├── page.tsx
+ │ ├── globals.css
+ │ ├── error.tsx
+ │ ├── loading.tsx
+ │ ├── robots.ts
+ │ ├── sitemap.ts
+ │ └── api/
+ │ ├── [...path]/route.ts
+ │ └── health/route.ts
+ ├── components/ (24 components)
+ ├── contexts/
+ │ └── ThemeContext.tsx
+ └── lib/ (7 modules)
 ```
 
 ### Plugin Repo (`loterias-aposta-rapido`)
@@ -244,20 +244,20 @@ git submodule summary
 ├── manifest.json
 ├── README.md
 ├── icons/
-│   ├── icon16.png
-│   ├── icon16.svg
-│   ├── icon48.png
-│   └── icon128.png
+│ ├── icon16.png
+│ ├── icon16.svg
+│ ├── icon48.png
+│ └── icon128.png
 └── src/
-    ├── popup.html
-    ├── popup.js
-    ├── popup.css
-    ├── options.html
-    ├── options.js
-    ├── options.css
-    ├── background.js
-    ├── content.js
-    └── content.css
+ ├── popup.html
+ ├── popup.js
+ ├── popup.css
+ ├── options.html
+ ├── options.js
+ ├── options.css
+ ├── background.js
+ ├── content.js
+ └── content.css
 ```
 
 ## Development with Submodules

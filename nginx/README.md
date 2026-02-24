@@ -12,28 +12,28 @@ O Nginx atua como reverse proxy para o backend Spring Boot, oferecendo:
 ## Arquitetura
 
 ```
-Internet/LAN                    Servidor
-     │                             │
-     │ :80                         │
-     ▼                             ▼
-┌─────────┐                 ┌─────────────┐
-│ Cliente │────────────────►│   Nginx     │
-└─────────┘                 │   (:80)     │
-                            └──────┬──────┘
-                                   │
-                    ┌──────────────┼──────────────┐
-                    │              │              │
-                    ▼              ▼              ▼
-              ┌─────────┐   ┌─────────┐   ┌─────────────┐
-              │ /api/*  │   │/actuator│   │ /SDK, etc   │
-              │  PROXY  │   │  LOCAL  │   │   BLOCK     │
-              └────┬────┘   └────┬────┘   └─────────────┘
-                   │             │
-                   ▼             ▼
-            ┌─────────────────────────┐
-            │   Backend (127.0.0.1)   │
-            │        :8080            │
-            └─────────────────────────┘
+Internet/LAN Servidor
+ │ │
+ │ :80 │
+ 
+┌─────────┐ ┌─────────────┐
+│ Cliente │────────────────│ Nginx │
+└─────────┘ │ (:80) │
+ └──────┬──────┘
+ │
+ ┌──────────────┼──────────────┐
+ │ │ │
+ 
+ ┌─────────┐ ┌─────────┐ ┌─────────────┐
+ │ /api/* │ │/actuator│ │ /SDK, etc │
+ │ PROXY │ │ LOCAL │ │ BLOCK │
+ └────┬────┘ └────┬────┘ └─────────────┘
+ │ │
+ 
+ ┌─────────────────────────┐
+ │ Backend (127.0.0.1) │
+ │ :8080 │
+ └─────────────────────────┘
 ```
 
 ## Instalação
@@ -76,7 +76,7 @@ Paths maliciosos retornam 444 (conexão fechada sem resposta):
 
 ```nginx
 location ~* ^/(SDK|cgi-bin|admin|wp-admin|phpmyadmin|.env|.git) {
-    return 444;
+ return 444;
 }
 ```
 
@@ -129,7 +129,7 @@ curl -I http://localhost/SDK/webLanguage
 
 # Testar rate limit
 for i in {1..20}; do 
-  curl -s -o /dev/null -w "%{http_code}\n" http://localhost/api/dashboard/megasena
+ curl -s -o /dev/null -w "%{http_code}\n" http://localhost/api/dashboard/megasena
 done
 # Após 10 requests, deve retornar 503
 
@@ -165,5 +165,5 @@ sudo tail -f /var/log/nginx/loterias-error.log
 Edite `loterias-backend.conf` e ajuste os valores:
 
 ```nginx
-limit_req_zone $binary_remote_addr zone=api_limit:10m rate=20r/s;  # Aumentar
+limit_req_zone $binary_remote_addr zone=api_limit:10m rate=20r/s; # Aumentar
 ```

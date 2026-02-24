@@ -31,9 +31,9 @@ mvn clean compile
 mvn spring-boot:run
 ```
 
-O backend estará disponível em `http://localhost:8080`.
+O backend estará disponível em `http://localhost:8081`.
 
-Swagger UI: `http://localhost:8080/swagger-ui.html`
+Swagger UI: `http://localhost:8081/swagger-ui.html`
 
 ### 3. Frontend
 
@@ -92,7 +92,7 @@ journalctl -u loterias-backend-dev -u loterias-frontend-dev -f
 
 ### Importante
 
-⚠️ **Não rode serviços de dev e produção simultaneamente!**
+ **Não rode serviços de dev e produção simultaneamente!**
 
 ```bash
 # Antes de iniciar dev, pare produção:
@@ -121,19 +121,19 @@ sudo systemctl stop loterias-backend-dev loterias-frontend-dev
 ```
 backend/
 ├── src/main/java/br/com/loterias/
-│   ├── controller/     # REST Controllers
-│   ├── domain/
-│   │   ├── entity/     # JPA Entities
-│   │   ├── dto/        # Data Transfer Objects
-│   │   └── repository/ # Spring Data Repositories
-│   ├── service/        # Business Logic
-│   └── scheduler/      # Scheduled Tasks
+│ ├── controller/ # REST Controllers
+│ ├── domain/
+│ │ ├── entity/ # JPA Entities
+│ │ ├── dto/ # Data Transfer Objects
+│ │ └── repository/ # Spring Data Repositories
+│ ├── service/ # Business Logic
+│ └── scheduler/ # Scheduled Tasks
 ├── src/main/resources/
-│   ├── application.yml           # Configuração principal
-│   ├── application-dev.yml       # Config desenvolvimento
-│   ├── application-prod.yml      # Config produção
-│   └── logback-spring.xml        # Configuração de logs
-└── pom.xml                       # Dependências Maven
+│ ├── application.yml # Configuração principal
+│ ├── application-dev.yml # Config desenvolvimento
+│ ├── application-prod.yml # Config produção
+│ └── logback-spring.xml # Configuração de logs
+└── pom.xml # Dependências Maven
 ```
 
 ### Frontend
@@ -141,17 +141,17 @@ backend/
 ```
 frontend/
 ├── src/
-│   ├── app/                      # Next.js App Router
-│   │   ├── api/[...path]/        # API Proxy
-│   │   ├── globals.css           # Estilos + Tema
-│   │   ├── layout.tsx            # Layout Root
-│   │   └── page.tsx              # Página Principal
-│   ├── components/               # Componentes React
-│   ├── contexts/                 # React Contexts
-│   └── lib/                      # Utilitários
-├── next.config.ts                # Config Next.js
-├── package.json                  # Dependências
-└── tsconfig.json                 # Config TypeScript
+│ ├── app/ # Next.js App Router
+│ │ ├── api/[...path]/ # API Proxy
+│ │ ├── globals.css # Estilos + Tema
+│ │ ├── layout.tsx # Layout Root
+│ │ └── page.tsx # Página Principal
+│ ├── components/ # Componentes React
+│ ├── contexts/ # React Contexts
+│ └── lib/ # Utilitários
+├── next.config.ts # Config Next.js
+├── package.json # Dependências
+└── tsconfig.json # Config TypeScript
 ```
 
 ## Fluxo de Trabalho
@@ -159,16 +159,16 @@ frontend/
 ### Criar Nova Feature
 
 1. **Backend**:
-   - Criar DTO em `domain/dto/`
-   - Criar Service em `service/`
-   - Criar/Atualizar Controller em `controller/`
-   - Adicionar endpoint à documentação
+ - Criar DTO em `domain/dto/`
+ - Criar Service em `service/`
+ - Criar/Atualizar Controller em `controller/`
+ - Adicionar endpoint à documentação
 
 2. **Frontend**:
-   - Adicionar tipos em `lib/api.ts`
-   - Adicionar função de API em `lib/api.ts`
-   - Criar/Atualizar componente em `components/`
-   - Integrar na página principal
+ - Adicionar tipos em `lib/api.ts`
+ - Adicionar função de API em `lib/api.ts`
+ - Criar/Atualizar componente em `components/`
+ - Integrar na página principal
 
 ### Criar Novo Componente Frontend
 
@@ -181,56 +181,56 @@ import { api, TipoLoteria } from '@/lib/api';
 import { Loader2 } from 'lucide-react';
 
 interface NovoComponenteProps {
-  tipo: TipoLoteria;
+ tipo: TipoLoteria;
 }
 
 export function NovoComponente({ tipo }: NovoComponenteProps) {
-  const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+ const [data, setData] = useState(null);
+ const [loading, setLoading] = useState(true);
+ const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
-    loadData();
-  }, [tipo]);
+ useEffect(() => {
+ loadData();
+ }, [tipo]);
 
-  const loadData = async () => {
-    setLoading(true);
-    setError(null);
-    try {
-      const result = await api.novaFuncao(tipo);
-      setData(result);
-    } catch (err) {
-      setError('Erro ao carregar dados');
-      console.error(err);
-    } finally {
-      setLoading(false);
-    }
-  };
+ const loadData = async () => {
+ setLoading(true);
+ setError(null);
+ try {
+ const result = await api.novaFuncao(tipo);
+ setData(result);
+ } catch (err) {
+ setError('Erro ao carregar dados');
+ console.error(err);
+ } finally {
+ setLoading(false);
+ }
+ };
 
-  if (loading) {
-    return (
-      <div className="flex items-center justify-center p-12">
-        <Loader2 className="w-8 h-8 animate-spin text-text-tertiary" />
-      </div>
-    );
-  }
+ if (loading) {
+ return (
+ <div className="flex items-center justify-center p-12">
+ <Loader2 className="w-8 h-8 animate-spin text-text-tertiary" />
+ </div>
+ );
+ }
 
-  if (error) {
-    return (
-      <div className="bg-red-900/50 border border-red-700 text-red-400 rounded-xl p-4">
-        {error}
-      </div>
-    );
-  }
+ if (error) {
+ return (
+ <div className="bg-red-900/50 border border-red-700 text-red-400 rounded-xl p-4">
+ {error}
+ </div>
+ );
+ }
 
-  return (
-    <div className="bg-surface-primary rounded-xl p-6 shadow-xl">
-      <h2 className="text-xl font-bold text-text-primary mb-4">
-        Novo Componente
-      </h2>
-      {/* Conteúdo */}
-    </div>
-  );
+ return (
+ <div className="bg-surface-primary rounded-xl p-6 shadow-xl">
+ <h2 className="text-xl font-bold text-text-primary mb-4">
+ Novo Componente
+ </h2>
+ {/* Conteúdo */}
+ </div>
+ );
 }
 ```
 
@@ -241,45 +241,45 @@ export function NovoComponente({ tipo }: NovoComponenteProps) {
 @RestController
 @RequestMapping("/api/nova-funcionalidade")
 public class NovaFuncionalidadeController {
-    
-    private final NovaService novaService;
-    
-    public NovaFuncionalidadeController(NovaService novaService) {
-        this.novaService = novaService;
-    }
-    
-    @GetMapping("/{tipo}")
-    @Operation(summary = "Nova funcionalidade", description = "Descrição detalhada")
-    public Mono<NovaResponse> novaFuncionalidade(@PathVariable String tipo) {
-        TipoLoteria tipoLoteria = parseTipoLoteria(tipo);
-        return Mono.fromCallable(() -> novaService.processar(tipoLoteria))
-                .subscribeOn(Schedulers.boundedElastic());
-    }
+ 
+ private final NovaService novaService;
+ 
+ public NovaFuncionalidadeController(NovaService novaService) {
+ this.novaService = novaService;
+ }
+ 
+ @GetMapping("/{tipo}")
+ @Operation(summary = "Nova funcionalidade", description = "Descrição detalhada")
+ public Mono<NovaResponse> novaFuncionalidade(@PathVariable String tipo) {
+ TipoLoteria tipoLoteria = parseTipoLoteria(tipo);
+ return Mono.fromCallable(() -> novaService.processar(tipoLoteria))
+ .subscribeOn(Schedulers.boundedElastic());
+ }
 }
 
 // Service
 @Service
 public class NovaService {
-    
-    private final ConcursoRepository concursoRepository;
-    
-    public NovaService(ConcursoRepository concursoRepository) {
-        this.concursoRepository = concursoRepository;
-    }
-    
-    public NovaResponse processar(TipoLoteria tipo) {
-        List<Concurso> concursos = concursoRepository
-            .findByTipoLoteriaOrderByNumeroDesc(tipo);
-        // Lógica
-        return new NovaResponse(...);
-    }
+ 
+ private final ConcursoRepository concursoRepository;
+ 
+ public NovaService(ConcursoRepository concursoRepository) {
+ this.concursoRepository = concursoRepository;
+ }
+ 
+ public NovaResponse processar(TipoLoteria tipo) {
+ List<Concurso> concursos = concursoRepository
+ .findByTipoLoteriaOrderByNumeroDesc(tipo);
+ // Lógica
+ return new NovaResponse(...);
+ }
 }
 
 // DTO
 public record NovaResponse(
-    String tipo,
-    String nomeLoteria,
-    // outros campos
+ String tipo,
+ String nomeLoteria,
+ // outros campos
 ) {}
 ```
 
@@ -307,10 +307,10 @@ public record NovaResponse(
 Sempre use as classes semânticas ao invés de cores diretas:
 
 ```tsx
-// ✅ Correto
+// Correto
 <div className="bg-surface-primary text-text-primary">
 
-// ❌ Evitar
+// Evitar
 <div className="bg-gray-800 text-white">
 ```
 
@@ -346,8 +346,8 @@ npm run build
 ### Backend
 
 1. **Logs**: Ajustar `LOG_LEVEL` em `application.yml`
-2. **Actuator**: `http://localhost:8080/actuator/health`
-3. **Swagger**: `http://localhost:8080/swagger-ui.html`
+2. **Actuator**: `http://localhost:8081/actuator/health`
+3. **Swagger**: `http://localhost:8081/swagger-ui.html`
 
 ### Frontend
 
@@ -370,7 +370,7 @@ npm run build
 
 | Variável | Descrição | Default |
 |----------|-----------|---------|
-| `BACKEND_URL` | URL do backend | `http://localhost:8080` |
+| `BACKEND_URL` | URL do backend | `http://localhost:8081` |
 | `LOKI_URL` | URL do Loki | - |
 | `LOG_LEVEL` | Nível de log | `info` |
 

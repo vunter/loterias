@@ -13,21 +13,21 @@ Sistema completo para análise de loterias brasileiras da Caixa Econômica Feder
 ## Arquitetura
 
 ```
-┌─────────────────┐     ┌─────────────────┐     ┌─────────────────┐
-│                 │     │                 │     │                 │
-│   Frontend      │────▶│    Backend      │────▶│   PostgreSQL    │
-│   (Next.js)     │     │  (Spring Boot)  │     │                 │
-│   :3000         │     │     :8080       │     │    :5432        │
-│                 │     │                 │     │                 │
-└─────────────────┘     └────────┬────────┘     └─────────────────┘
-                                 │
-                                 │
-┌─────────────────┐              │              ┌─────────────────┐
-│                 │              │              │                 │
-│  Plugin Chrome  │──────────────┘              │   API Caixa     │
-│  (Aposta Rápido)│                             │  (Fonte dados)  │
-│                 │                             │                 │
-└─────────────────┘                             └─────────────────┘
+┌─────────────────┐ ┌─────────────────┐ ┌─────────────────┐
+│ │ │ │ │ │
+│ Frontend │────│ Backend │────│ PostgreSQL │
+│ (Next.js) │ │ (Spring Boot) │ │ │
+│ :3000 │ │ :8081 │ │ :5432 │
+│ │ │ │ │ │
+└─────────────────┘ └────────┬────────┘ └─────────────────┘
+ │
+ │
+┌─────────────────┐ │ ┌─────────────────┐
+│ │ │ │ │
+│ Plugin Chrome │──────────────┘ │ API Caixa │
+│ (Aposta Rápido)│ │ (Fonte dados) │
+│ │ │ │
+└─────────────────┘ └─────────────────┘
 ```
 
 ## Quick Start
@@ -37,7 +37,7 @@ Sistema completo para análise de loterias brasileiras da Caixa Econômica Feder
 ```bash
 cd backend
 mvn spring-boot:run
-# Acesse: http://localhost:8080/docs
+# Acesse: http://localhost:8081/docs
 ```
 
 ### 2. Frontend
@@ -70,30 +70,30 @@ npm run dev
 ## Funcionalidades
 
 ### Backend (API)
-- ✅ Consulta de resultados
-- ✅ Estatísticas de frequência
-- ✅ Análise de correlação
-- ✅ Geração de jogos inteligentes
-- ✅ Verificação de apostas
-- ✅ Simulação histórica
-- ✅ Importação de Excel
-- ✅ Exportação CSV
-- ✅ Documentação Swagger
+- Consulta de resultados
+- Estatísticas de frequência
+- Análise de correlação
+- Geração de jogos inteligentes
+- Verificação de apostas
+- Simulação histórica
+- Importação de Excel
+- Exportação CSV
+- Documentação Swagger
 
 ### Frontend (Dashboard)
-- ✅ Visualização de resultados
-- ✅ Gráficos de frequência
-- ✅ Ranking de números
-- ✅ Gerador de jogos
-- ✅ Verificador de apostas
-- ✅ Tema claro/escuro
+- Visualização de resultados
+- Gráficos de frequência
+- Ranking de números
+- Gerador de jogos
+- Verificador de apostas
+- Tema claro/escuro
 
 ### Plugin (Aposta Rápido)
-- ✅ Preenchimento automático
-- ✅ Integração com API
-- ✅ Jogos do Dia (múltiplas loterias)
-- ✅ Suporte a extras (trevos, times, meses)
-- ✅ Persistência de configurações
+- Preenchimento automático
+- Integração com API
+- Jogos do Dia (múltiplas loterias)
+- Suporte a extras (trevos, times, meses)
+- Persistência de configurações
 
 ## Tecnologias
 
@@ -136,15 +136,15 @@ docker-compose up -d
 
 ```
 loterias/
-├── backend/                # API Spring Boot
-├── frontend/               # Dashboard Next.js
-├── aposta-rapido/          # Extensão Chrome
-├── docs/                   # Documentação
-│   ├── README.md           # Este arquivo
-│   ├── BACKEND.md          # Doc do backend
-│   ├── FRONTEND.md         # Doc do frontend
-│   └── PLUGIN.md           # Doc do plugin
-├── grafana/                # Dashboards Grafana
-├── nginx/                  # Configuração Nginx
-└── README.md               # Readme principal
+├── backend/ # API Spring Boot
+├── frontend/ # Dashboard Next.js
+├── aposta-rapido/ # Extensão Chrome
+├── docs/ # Documentação
+│ ├── README.md # Este arquivo
+│ ├── BACKEND.md # Doc do backend
+│ ├── FRONTEND.md # Doc do frontend
+│ └── PLUGIN.md # Doc do plugin
+├── grafana/ # Dashboards Grafana
+├── nginx/ # Configuração Nginx
+└── README.md # Readme principal
 ```
