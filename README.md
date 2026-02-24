@@ -79,7 +79,7 @@ docker-compose up -d
 loterias/
 ├── backend/                       # [submodule] Spring Boot API
 ├── frontend/                      # [submodule] Next.js Frontend
-├── aposta-facil/                 # [submodule] Extensao Chrome
+├── aposta-rapido/                 # [submodule] Extensao Chrome
 ├── nginx/                         # Configuracao Nginx (reverse proxy)
 │   ├── nginx.docker.conf          # Nginx para Docker
 │   └── README.md                  # Documentacao Nginx
