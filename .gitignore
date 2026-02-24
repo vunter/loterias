@@ -37,3 +37,15 @@ result.json
 # Archives
 *.tar.gz
 *.zip
+
+# Infrastructure (managed outside repo)
+*.service
+install-*.sh
+setup-*.sh
+loterias-logrotate.conf
+loterias-env.conf
+grafana/
+FUTURE-FEATURES.md
+docs/*.md
+!docs/README.md
+docs/*.sql

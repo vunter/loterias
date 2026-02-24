@@ -2,7 +2,7 @@
 
 Sistema de analise estatistica de loterias brasileiras com backend Spring Boot, frontend Next.js e extensao Chrome para preenchimento automatico de apostas.
 
-Este repositorio e o agregador principal que contem infraestrutura, configuracoes de deploy e referencia os sub-projetos via git submodules.
+Este repositorio e o agregador principal que contem configuracoes de deploy e referencia os sub-projetos via git submodules.
 
 ## Repositorios
 
@@ -65,10 +65,12 @@ cd backend
 cd ../frontend
 npm install
 npm run build
+```
 
-# Instalar services
-cd ..
-sudo ./install-services.sh
+### Docker
+
+```bash
+docker-compose up -d
 ```
 
 ## Estrutura do Projeto
@@ -78,28 +80,12 @@ loterias/
 ├── backend/                       # [submodule] Spring Boot API
 ├── frontend/                      # [submodule] Next.js Frontend
 ├── aposta-rapido/                 # [submodule] Extensao Chrome
-├── docs/                          # Documentacao
-│   ├── README.md                  # Indice
-│   ├── ARCHITECTURE.md            # Arquitetura
-│   ├── BACKEND.md                 # Backend
-│   ├── FRONTEND.md                # Frontend
-│   ├── PLUGIN.md                  # Extensao Chrome
-│   ├── API.md                     # Referencia da API
-│   ├── DEPLOY.md                  # Deploy e operacoes
-│   ├── DEVELOPMENT.md             # Ambiente de desenvolvimento
-│   └── FEATURES.md                # Funcionalidades
-├── grafana/                       # Configuracoes Grafana
-│   └── provisioning/              # Dashboards e datasources
-├── nginx/                         # Configuracao Nginx
+├── nginx/                         # Configuracao Nginx (reverse proxy)
+│   ├── nginx.docker.conf          # Nginx para Docker
+│   └── README.md                  # Documentacao Nginx
 ├── docker-compose.yml             # Stack Docker
-├── loterias-backend.service       # Systemd (producao)
-├── loterias-frontend.service      # Systemd (producao)
-├── loterias-backend-dev.service   # Systemd (dev)
-├── loterias-frontend-dev.service  # Systemd (dev)
-├── loterias-env.conf              # Variaveis de ambiente
-├── loterias-logrotate.conf        # Logrotate
-├── install-services.sh            # Instalacao producao
-└── install-dev-services.sh        # Instalacao desenvolvimento
+├── .env.docker.example            # Exemplo de variaveis para Docker
+└── README.md
 ```
 
 ## Endpoints Principais
@@ -159,17 +145,6 @@ loterias:
 - Nginx bloqueia scanners e paths maliciosos
 - Rate limiting: 10 req/s API, 1 req/min sync
 - Endpoints `/actuator/*` restritos a rede local
-
-## Documentacao
-
-- [Indice](docs/README.md)
-- [Arquitetura](docs/ARCHITECTURE.md)
-- [Backend](docs/BACKEND.md)
-- [Frontend](docs/FRONTEND.md)
-- [Plugin Chrome](docs/PLUGIN.md)
-- [API Reference](docs/API.md)
-- [Deploy](docs/DEPLOY.md)
-- [Desenvolvimento](docs/DEVELOPMENT.md)
 
 ## Licenca
 
