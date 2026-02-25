@@ -4,7 +4,7 @@ services:
     container_name: loterias-backend
     env_file:
       - path: .env
-        required: false
+        required: true
     environment:
       - SPRING_PROFILES_ACTIVE=${SPRING_PROFILES_ACTIVE:-prod,datadog}
       - VAULT_ADDR=${VAULT_ADDR}
@@ -80,6 +80,11 @@ services:
         limits:
           memory: 64M
           cpus: '0.5'
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--spider", "http://127.0.0.1:80/"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
     depends_on:
       backend:
         condition: service_healthy
